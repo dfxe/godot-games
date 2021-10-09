@@ -35,7 +35,7 @@ func get_input():
 				gameManagerNode.get_node("GameText").text = "Asphalt: "+str(gameManagerNode.asphalt_left)
 				
 				
-				var nextBrickName = "res://Players_0"+str(nextRandNum)+".tscn"
+				var nextBrickName = "res://Players_01.tscn"
 				print(nextBrickName)
 				var scene = load(nextBrickName)
 				var player = scene.instance()

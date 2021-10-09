@@ -16,6 +16,7 @@ _global_script_class_icons={
 
 config/name="Puzzle Fishin"
 run/main_scene="res://main_sceno.tscn"
+boot_splash/image="res://icon.png"
 config/icon="res://icon.png"
 
 [input]
