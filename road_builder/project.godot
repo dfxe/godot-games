@@ -8,8 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Control",
+"class": "BPBP_Main",
+"language": "GDScript",
+"path": "res://addons/bpb_placement/bpbp_main.gd"
+} ]
 _global_script_class_icons={
+"BPBP_Main": ""
 }
 
 [application]
@@ -31,6 +37,6 @@ reload_scene={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.772549, 0.654902, 0.486275, 1 )
+environment/default_clear_color=Color( 0.756863, 0.74902, 0.733333, 1 )
 quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"

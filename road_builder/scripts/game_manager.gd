@@ -6,16 +6,25 @@ var asphalt_message = "Asphalt: "
 var canPlant = true
 var score = 0
 
-
 var nextBrickSprite = [("res://images/pixil-frame-0 (1).png"),"res://images/pixil-frame-2.png",("res://images/pixil-frame-0.png")]
 onready var nextBrickTexture = null
 
 onready var main_camera = find_node("Camera2D")
+onready var game_text = find_node("GameText")
+
+func update_budget():
+	main_camera.start_shaker()
+				
+	asphalt_left -= 10
+
+	game_text.text = "Asphalt: "+str(asphalt_left)
+	return asphalt_left >= 10
 
 func present_next_brick(brickNum):
 	if nextBrickTexture == null:
 		nextBrickTexture = find_node("NextBrickTexture")
 	nextBrickTexture.texture = load(nextBrickSprite[brickNum-1])
+
 
 func point_obj_form(isRandom:bool,whatObj:String,coordX:float,coordY:float):
 	var target_point_scene = null
@@ -38,22 +47,23 @@ func point_obj_form(isRandom:bool,whatObj:String,coordX:float,coordY:float):
 		var y_pos = rand_p.randf_range(-100,250)
 		target_point_obj.position.x = x_pos
 		target_point_obj.position.y = y_pos
-		add_child(target_point_obj)
 		
+	else:
+		#Need a level layout, a sensible one 
+		pass
+	add_child(target_point_obj)	
 		
-	
 func generate_target_points(how_many_points):
 	for _i in range(1,how_many_points):
 		#point_obj_form(true,"target",0,0)
 		point_obj_form(true,"house_obstacle",0,0)
 		point_obj_form(true,"bonus_asphalt",0,0)
 		
-	
 # Called when the node enters the scene tree for the first time.
 func start():
 	asphalt_left = 500
 	score = 0
-	$GameText.text = asphalt_message+str(asphalt_left)
+	game_text .text = asphalt_message+str(asphalt_left)
 	generate_target_points(4)
 
 func _ready():
@@ -65,4 +75,5 @@ func _process(delta):
 		get_tree().reload_current_scene()
 
 func game_over():
+	canPlant=false
 	print("GAME OVER")

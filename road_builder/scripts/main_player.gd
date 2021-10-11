@@ -12,31 +12,17 @@ func _ready():
 	rand_num.randomize()
 	nextrand_num=rand_num.randi_range (1,3)
 	game_manager_node.present_next_brick(nextrand_num)
-	print("Brick created") # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func get_input():
 	
 	if Input.is_action_just_pressed("ui_select") && game_manager_node.canPlant:
 		if is_planted == false:
-			#print("stahp")
 			is_planted=true
-			#print(get_tree().get_node("GameManager").asphalt_left)
-			#print(gameManager.name)
-			
-			if game_manager_node.asphalt_left >= 10:
-				#cam shaker
-				game_manager_node.main_camera.start_shaker()
-				
-				game_manager_node.asphalt_left -= 10
-				game_manager_node.get_node("GameText").text = "Asphalt: "+str(game_manager_node.asphalt_left)
-				
+			if game_manager_node.update_budget():
 				
 				var nextBrickName = "res://Players_02.tscn"
-				print(nextBrickName)
+			
 				var scene = load(nextBrickName)
 				var player = scene.instance()
 				
@@ -56,20 +42,23 @@ func get_input():
 				
 				$Sprite_nc.modulate = Color(1,1,1,1)
 			else:
-				game_manager_node.canPlant=false
-			#print(find_parent("GameManager"))
-			#get_tree().get_root().get_node("GameManager").game_manager.asphalt_left-=10
-			
+				game_manager_node.game_over()
 
-	#position += velocity * delta
-	#position.x = clamp(position.x, 0, screen_size.x)
-	#position.y = clamp(position.y, 0, screen_size.y)
-		
+var rotation_backward = false
+func rotation_control(delta):
+	if rotation_backward:
+		rotation-=rotation_speed*delta
+	else:
+		rotation+=rotation_speed*delta
+	if rotation > 2:
+		rotation_backward=true
+	elif rotation <= -2: 
+		rotation_backward=false
+	
 		
 func _physics_process(delta):
-		
 	if not is_planted:
-		rotation += rotation_speed*delta
+		rotation_control(delta)
 	else: 
 		rotation = self.rotation
 	get_input()

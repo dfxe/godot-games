@@ -15,7 +15,6 @@ func start_shaker(duration=0.1,freq=15,ampl=2):
 	$Frequency.start()
 	do_shake()
 	
-
 func do_shake():
 	var rand = Vector2()
 	rand.x = rand_range(-amplitude,amplitude)

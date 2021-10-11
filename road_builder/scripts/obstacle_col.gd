@@ -9,10 +9,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_Area2D_body_entered(body):
-	#print(body.get_parent().get_name())
-	if(body.get_parent().get_name()=="PlayerRoad"):
-		pass
+func _on_Area2D_area_entered(area):
 	
-func _on_Area2D_area_entered(body):
-	pass
+	if(area.get_parent().get_name()=="PlayerRoad"):
+		self.queue_free()

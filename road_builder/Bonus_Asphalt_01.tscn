@@ -16,3 +16,5 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Area2D/CollisionShape2D"]
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
