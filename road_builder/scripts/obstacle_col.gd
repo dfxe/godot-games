@@ -10,4 +10,9 @@ func _ready():
 #	pass
 
 func _on_Area2D_body_entered(body):
-	print(str('Body entered: ', body.get_name()))
+	#print(body.get_parent().get_name())
+	if(body.get_parent().get_name()=="PlayerRoad"):
+		pass
+	
+func _on_Area2D_area_entered(body):
+	pass
