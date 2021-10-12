@@ -10,8 +10,10 @@ var nextBrickSprite = [("res://images/pixil-frame-0 (1).png"),"res://images/pixi
 onready var nextBrickTexture = null
 
 onready var main_camera = find_node("Camera2D")
-onready var game_text = find_node("GameText")
+onready var game_text_panel = find_node("GameTextPanel")
+onready var game_text = find_node("GameTextPanel").get_child(0)
 
+onready var last_player_pos = Vector2(0,0)
 func update_budget():
 	main_camera.start_shaker()
 				
@@ -24,7 +26,6 @@ func present_next_brick(brickNum):
 	if nextBrickTexture == null:
 		nextBrickTexture = find_node("NextBrickTexture")
 	nextBrickTexture.texture = load(nextBrickSprite[brickNum-1])
-
 
 func point_obj_form(isRandom:bool,whatObj:String,coordX:float,coordY:float):
 	var target_point_scene = null
@@ -59,12 +60,16 @@ func generate_target_points(how_many_points):
 		point_obj_form(true,"house_obstacle",0,0)
 		point_obj_form(true,"bonus_asphalt",0,0)
 		
+func start_level_timer():
+	var main_timer = find_node("LevelTimer")
+	
 # Called when the node enters the scene tree for the first time.
 func start():
 	asphalt_left = 500
 	score = 0
-	game_text .text = asphalt_message+str(asphalt_left)
+	game_text.text = asphalt_message+str(asphalt_left)
 	generate_target_points(4)
+	start_level_timer()
 
 func _ready():
 	start() # Replace with function body.

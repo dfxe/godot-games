@@ -6,5 +6,5 @@
 background_mode = 1
 background_sky = SubResource( 1 )
 background_color = Color( 0.435294, 0.180392, 0.666667, 1 )
-ambient_light_color = Color( 0.588235, 0.278431, 0.278431, 1 )
+ambient_light_color = Color( 0.968627, 0.937255, 0.152941, 1 )
 glow_enabled = true

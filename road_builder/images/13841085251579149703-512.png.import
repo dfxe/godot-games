@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bpb_placement_icon.png-123a81ec608bf53a9aa12f23ca3acaaa.stex"
+path="res://.import/13841085251579149703-512.png-1b1893f7d3b4c1417f7cb06fc10da3be.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bpb_placement/bpb_placement_icon.png"
-dest_files=[ "res://.import/bpb_placement_icon.png-123a81ec608bf53a9aa12f23ca3acaaa.stex" ]
+source_file="res://images/13841085251579149703-512.png"
+dest_files=[ "res://.import/13841085251579149703-512.png-1b1893f7d3b4c1417f7cb06fc10da3be.stex" ]
 
 [params]
 

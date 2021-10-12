@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Control",
-"class": "BPBP_Main",
-"language": "GDScript",
-"path": "res://addons/bpb_placement/bpbp_main.gd"
-} ]
-_global_script_class_icons={
-"BPBP_Main": ""
-}
-
 [application]
 
 config/name="Puzzle Fishin"
@@ -37,6 +27,6 @@ reload_scene={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.756863, 0.74902, 0.733333, 1 )
+environment/default_clear_color=Color( 0.607843, 0.643137, 0.72549, 1 )
 quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
