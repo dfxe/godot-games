@@ -19,14 +19,14 @@ func check_spawn_boundary(obj_pos:Vector2):
 	  obj_pos.x > (get_viewport_rect().size.x/2)*(-1) and
 	   obj_pos.y > (get_viewport_rect().size.y/2)*(-1) )
 
-func get_last_child():
+func get_last_child_pos()->Vector2:
 	var current = self.get_children()
 	var next = null
 	while current:
 		next = current[0]
 		current = current[-1].get_children()
 		print(current)
-	print(next.get_global_position())
+	return (next.get_global_position())
 
 func get_last_child_2():
 	return find_node(self.get_parent().name+str(game_manager_node.countr))
@@ -37,7 +37,7 @@ func get_input():
 		if is_planted == false:
 			is_planted=true
 			
-			if game_manager_node.update_budget(): #and check_spawn_boundary(game_manager_node.next_player_position):
+			if game_manager_node.update_budget() and check_spawn_boundary(get_last_child_pos()):
 				
 				var nextBrickName = "res://Players_02.tscn"
 			
@@ -56,7 +56,8 @@ func get_input():
 				#TODO UI follows main road and 
 				#TODO when outside the viewport, destroy 
 				#Fix: get_global_position()
-				var last = get_last_child()
+				var last = get_last_child_pos()
+				game_manager_node.game_text_panel.rect_position = Vector2(last)
 				player.position = Vector2(get_child(2).position.x+50, get_child(2).position.y)
 				fx_placed.position = Vector2(get_child(2).position.x-100,get_child(2).position.y)
 				
