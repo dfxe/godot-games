@@ -16,12 +16,17 @@ func _on_Area2D_area_entered(area):
 	if ("PlayerRoad" in  area.get_parent().get_name() ):
 		#if not get_parent().get_child(0).is_planted:
 			#error_fx()
+		game_manager_node.game_over("The roads were built on top of each other.")
+		
 		pass
 	if ("CostlyObtacle" in area.get_parent().get_name()):
 		game_manager_node.remove_child(area)
-		if not game_manager_node.update_budget():
-			game_manager_node.game_over()
+		if not game_manager_node.has_sufficient_budget():
+			game_manager_node.game_over("House demolition derailed the project's expected cost.")
+		else:
+			game_manager_node.update_budget(-20)
 	if ("Bonus" in area.get_parent().get_name()):
+		game_manager_node.update_budget(20)
 		game_manager_node.remove_child(area)
 
 func _on_Area2D_area_exited(area):

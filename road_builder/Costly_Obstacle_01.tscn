@@ -8,6 +8,7 @@
 extents = Vector2( 11.0133, 11.4098 )
 
 [node name="CostlyObstacle" type="Node2D"]
+z_index = -1
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2( 1.4, 1.4 )

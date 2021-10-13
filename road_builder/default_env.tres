@@ -3,8 +3,9 @@
 [sub_resource type="ProceduralSky" id=1]
 
 [resource]
-background_mode = 1
+background_mode = 4
 background_sky = SubResource( 1 )
 background_color = Color( 0.435294, 0.180392, 0.666667, 1 )
-ambient_light_color = Color( 0.968627, 0.937255, 0.152941, 1 )
-glow_enabled = true
+background_canvas_max_layer = -1
+ambient_light_color = Color( 1, 1, 1, 1 )
+dof_blur_near_quality = 2

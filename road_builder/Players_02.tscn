@@ -22,7 +22,7 @@ func _on_Area2D_area_exited(area):
 extents = Vector2( 62.9088, 17.294 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 55.6017, 1.20435 )
+extents = Vector2( 27.2849, 1.20435 )
 
 [node name="PlayerRoad" type="Node2D" groups=[
 "player",
@@ -30,11 +30,11 @@ extents = Vector2( 55.6017, 1.20435 )
 script = SubResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( -55.4951, -0.46566 )
+position = Vector2( -1.22244, 1.894 )
 script = ExtResource( 3 )
 
 [node name="CPUParticles2D_nc" type="CPUParticles2D" parent="KinematicBody2D"]
-position = Vector2( 55.5301, -0.23283 )
+position = Vector2( 17.7752, -0.704769 )
 emitting = false
 amount = 5
 explosiveness = 1.0
@@ -47,13 +47,13 @@ scale_amount = 44.01
 
 [node name="Sprite_nc" type="Sprite" parent="KinematicBody2D"]
 modulate = Color( 0.901961, 0.815686, 0.815686, 1 )
-position = Vector2( 55.6843, 0.349247 )
+position = Vector2( 17.9294, -0.122688 )
 rotation = 1.5708
-scale = Vector2( 0.5, 1.16817 )
+scale = Vector2( 0.5, 0.6 )
 texture = ExtResource( 1 )
 
 [node name="NextCamPos_nc" type="Node2D" parent="KinematicBody2D"]
-position = Vector2( 109.78, -0.46566 )
+position = Vector2( 38.5176, 1.894 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 visible = false
@@ -63,17 +63,18 @@ disabled = true
 
 [node name="Sprite2" type="Sprite" parent="KinematicBody2D"]
 visible = false
-position = Vector2( -0.192135, 0 )
+position = Vector2( -3.96763, 0.471939 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 4 )
 
 [node name="Sprite3" type="Sprite" parent="KinematicBody2D"]
 visible = false
-position = Vector2( 109.517, -0.192131 )
+position = Vector2( 38.7268, 1.22369 )
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 16.9897, 0.471954 )
 scale = Vector2( 10, 10 )
 script = ExtResource( 6 )
 

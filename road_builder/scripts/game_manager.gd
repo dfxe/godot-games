@@ -13,15 +13,15 @@ onready var main_camera = find_node("Camera2D")
 onready var game_text_panel = find_node("GameTextPanel")
 onready var game_text = find_node("GameTextPanel").get_child(0)
 
-onready var last_player_pos = Vector2(0,0)
-func update_budget():
+onready var rotation_on = true
+
+onready var cost_to_plant = 1
+func update_budget(delta):
 	main_camera.start_shaker()
-				
-	asphalt_left -= 10
-
+	asphalt_left += delta
 	game_text.text = "Asphalt: "+str(asphalt_left)
-	return asphalt_left >= 10
-
+func has_sufficient_budget(delta):
+	return asphalt_left-delta >= 0
 func present_next_brick(brickNum):
 	if nextBrickTexture == null:
 		nextBrickTexture = find_node("NextBrickTexture")
@@ -39,7 +39,8 @@ func point_obj_form(isRandom:bool,whatObj:String,coordX:float,coordY:float):
 	elif whatObj == "bonus_asphalt":
 		target_point_scene = load("res://Bonus_Asphalt_01.tscn")
 		target_point_obj = target_point_scene.instance()
-	
+	elif whatObj == "river":
+		pass
 	if isRandom == true:
 		var rand_p = RandomNumberGenerator.new()
 		rand_p.randomize()
@@ -78,7 +79,18 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("reload_scene"):
 		get_tree().reload_current_scene()
-
-func game_over():
+func pressed_reload():
+	get_tree().reload_current_scene()
+func game_over(message):
 	canPlant=false
+	rotation_on = false
+
+	main_camera.start_rotate()
+
+	find_node("GameOverBlur").visible=true
+
+	find_node("GameOverReason").text = message
+	find_node("GameOverReason").visible=true
+	find_node("GameOverText").visible=true
+
 	print("GAME OVER")
