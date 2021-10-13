@@ -100,3 +100,7 @@ func game_over(message):
 
 func _on_BackToMenuBtn_pressed():
 	pressed_reload()
+
+
+func _on_EndRestart_pressed():
+	pressed_reload() 

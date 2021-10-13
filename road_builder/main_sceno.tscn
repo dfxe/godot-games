@@ -79,6 +79,7 @@ __meta__ = {
 }
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Panel"]
+visible = false
 position = Vector2( 449.52, -16.6489 )
 scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 3 )
@@ -177,7 +178,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameOverPanel" type="Panel" parent="Panel"]
+[node name="GameOverPanel" type="Control" parent="Panel"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -199,10 +200,10 @@ __meta__ = {
 }
 
 [node name="GameOverReason" type="RichTextLabel" parent="Panel/GameOverPanel"]
-margin_left = -219.777
-margin_top = -51.2639
-margin_right = 380.223
-margin_bottom = 348.736
+margin_left = -219.38
+margin_top = -52.0576
+margin_right = 380.62
+margin_bottom = 347.942
 size_flags_horizontal = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.21
@@ -262,7 +263,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EndBackToMenu" type="Button" parent="Panel/GameOverPanel/ColorRect2"]
+[node name="EndRestart" type="Button" parent="Panel/GameOverPanel/ColorRect2"]
 margin_left = 12.5992
 margin_top = -6.29959
 margin_right = 105.599
@@ -296,3 +297,4 @@ volume_db = -0.01
 [connection signal="timeout" from="Camera2D/Frequency" to="Camera2D" method="_on_Frequency_timeout"]
 [connection signal="timeout" from="Camera2D/Duration" to="Camera2D" method="_on_Duration_timeout"]
 [connection signal="pressed" from="Panel/BackToMenuBtn" to="." method="_on_BackToMenuBtn_pressed"]
+[connection signal="pressed" from="Panel/GameOverPanel/ColorRect2/EndRestart" to="." method="_on_EndRestart_pressed"]
