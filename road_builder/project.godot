@@ -31,7 +31,7 @@ reload_scene={
 
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.137255, 0.137255, 0.137255, 1 )
+environment/default_clear_color=Color( 0.776471, 0.764706, 0.764706, 1 )
 quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

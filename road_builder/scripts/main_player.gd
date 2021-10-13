@@ -30,14 +30,25 @@ func get_last_child_pos()->Vector2:
 		
 	return (next.get_global_position())
 
+func has_budget()->bool:
+	var has_budget = game_manager_node.has_sufficient_budget(game_manager_node.cost_to_plant)
+	if not has_budget:
+		game_manager_node.game_over("Cost overrun!")
+	return has_budget
+
+func in_boundary()->bool:
+	var in_boundary = check_spawn_boundary(get_last_child_pos())
+	if not in_boundary:
+		game_manager_node.game_over("The road was built outside the planned area.")
+	return in_boundary
 
 func get_input():
 	
 	if Input.is_action_just_pressed("ui_select") && game_manager_node.canPlant:
 		if is_planted == false:
 			is_planted=true
-			
-			if game_manager_node.has_sufficient_budget(game_manager_node.cost_to_plant) and check_spawn_boundary(get_last_child_pos()):
+		
+			if has_budget() and in_boundary():
 				game_manager_node.update_budget(-game_manager_node.cost_to_plant)
 				var nextBrickName = "res://Players_02.tscn"
 			
@@ -53,9 +64,7 @@ func get_input():
 				add_child(player)
 				
 				fx_placed.get_child(0).emitting = true
-				#TODO UI follows main road and 
-				#TODO when outside the viewport, destroy 
-				#Fix: get_global_position()
+				
 				var last = get_last_child_pos()
 				game_manager_node.game_text_panel.rect_position = last
 				player.position = Vector2($Sprite3.position.x+20,$Sprite3.position.y) #Vector2(get_child(2).position.x+50, get_child(2).position.y)
@@ -63,8 +72,7 @@ func get_input():
 				
 				$Sprite_nc.modulate = Color(1,1,1,1)
 				self.set_process_input(false)
-			else:
-				game_manager_node.game_over("The road was built outside the planned area.")
+			
 
 var rotation_backward = false
 func rotation_control(delta):

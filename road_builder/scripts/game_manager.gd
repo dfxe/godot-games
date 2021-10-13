@@ -1,7 +1,7 @@
 extends Node
 
 #onready var mainPlayerNode = get_node("PlayerObj/PlayerKB2D").canPlant
-var asphalt_left = 50
+var asphalt_left = 10
 var asphalt_message = "Asphalt: "
 var canPlant = true
 var score = 0
@@ -63,12 +63,14 @@ func generate_target_points(how_many_points):
 		
 func start_level_timer():
 	var main_timer = find_node("LevelTimer")
+
 	
 # Called when the node enters the scene tree for the first time.
 func start():
-	asphalt_left = 500
+	asphalt_left = 10
 	score = 0
 	game_text.text = asphalt_message+str(asphalt_left)
+	game_text_panel.rect_position = $PlayerRoad.get_global_position()
 	generate_target_points(4)
 	start_level_timer()
 
@@ -88,10 +90,10 @@ func game_over(message):
 	main_camera.start_rotate()
 
 	find_node("GameOverBlur").visible=true
-
 	find_node("GameOverReason").text = message
-	find_node("GameOverReason").visible=true
-	find_node("GameOverText").visible=true
+	find_node("GameOverPanel").visible=true
+	find_node("BackToMenuBtn").visible=false
+	
 
 	print("GAME OVER")
 
