@@ -15,6 +15,8 @@ onready var game_text = find_node("GameTextPanel").get_child(0)
 
 onready var rotation_on = true
 
+onready var generated_map = null
+
 onready var cost_to_plant = 1
 func update_budget(delta):
 	main_camera.start_shaker()
@@ -42,16 +44,19 @@ func point_obj_form(isRandom:bool,whatObj:String,coordX:float,coordY:float):
 	elif whatObj == "river":
 		pass
 	if isRandom == true:
-		var rand_p = RandomNumberGenerator.new()
+		"""var rand_p = RandomNumberGenerator.new()
 		rand_p.randomize()
 		var x_pos = rand_p.randf_range(-100,250)
 		rand_p.randomize()
 		var y_pos = rand_p.randf_range(-100,250)
 		target_point_obj.position.x = x_pos
 		target_point_obj.position.y = y_pos
-		
+		"""
+		var rand_p = RandomNumberGenerator.new()
+		rand_p.randomize()
+		var fg=generated_map[rand_p.randi_range(0,len(generated_map)-1)]
+		target_point_obj.position = fg[rand_p.randi_range(0,len(fg)-1)]
 	else:
-		#Need a level layout, a sensible one 
 		pass
 	add_child(target_point_obj)	
 		
@@ -64,6 +69,22 @@ func generate_target_points(how_many_points):
 func start_level_timer():
 	var main_timer = find_node("LevelTimer")
 
+func generate_levels():
+	var level_map = []
+	var lvl = []
+	#resolution for s21: 1440x3200
+	var x = -1000
+	var y = -1000
+	var rand_p = RandomNumberGenerator.new()
+	rand_p.randomize()
+	for _i in range(8):
+		lvl = []
+		x=rand_p.randi_range(-500,1000)
+		for _j in range(10):
+			y=(rand_p.randi_range(-500,1000))
+			lvl.append(Vector2(x,y))
+		level_map.append(lvl)
+	return level_map
 	
 # Called when the node enters the scene tree for the first time.
 func start():
@@ -71,7 +92,10 @@ func start():
 	score = 0
 	game_text.text = asphalt_message+str(asphalt_left)
 	game_text_panel.rect_position = $PlayerRoad.get_global_position()
-	generate_target_points(4)
+	
+	generated_map=generate_levels()
+	generate_target_points(30)
+	
 	start_level_timer()
 
 func _ready():
@@ -81,8 +105,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("reload_scene"):
 		get_tree().reload_current_scene()
+		
 func pressed_reload():
 	get_tree().reload_current_scene()
+	
 func game_over(message):
 	canPlant=false
 	rotation_on = false
