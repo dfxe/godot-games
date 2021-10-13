@@ -51,11 +51,11 @@ func _process(delta):
 	if can_rotate:
 		if clockwise_rotation:
 			rotation_degrees += delta
-			if rotation_degrees > 7:
+			if rotation_degrees > 5:
 				clockwise_rotation = false
 		else:
 			rotation_degrees -= delta
-			if rotation_degrees < -7:
+			if rotation_degrees < -5:
 				clockwise_rotation = true
 
 func _reset():

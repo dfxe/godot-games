@@ -94,3 +94,7 @@ func game_over(message):
 	find_node("GameOverText").visible=true
 
 	print("GAME OVER")
+
+
+func _on_BackToMenuBtn_pressed():
+	pressed_reload()

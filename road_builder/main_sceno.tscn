@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Players_02.tscn" type="PackedScene" id=1]
 [ext_resource path="res://images/pixil-frame-0.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://fonts/Quicksand/static/Quicksand-Light.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://scripts/game_manager.gd" type="Script" id=10]
 [ext_resource path="res://fonts/Quicksand/static/Quicksand-Bold.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://fonts/Quicksand/static/Quicksand-Medium.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="Theme" id=1]
 
@@ -24,8 +25,13 @@ shader_param/mix_amount = 0.0
 shader_param/color_over = null
 
 [sub_resource type="DynamicFont" id=4]
-size = 8
+size = 50
+use_filter = true
 font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 12 )
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 10 )
@@ -167,9 +173,9 @@ __meta__ = {
 visible = false
 margin_left = -224.267
 margin_top = -183.714
-margin_right = -127.267
-margin_bottom = -165.714
-rect_scale = Vector2( 5, 5 )
+margin_right = 175.733
+margin_bottom = 216.286
+rect_clip_content = false
 size_flags_horizontal = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.21
@@ -184,13 +190,12 @@ __meta__ = {
 visible = false
 margin_left = -219.777
 margin_top = -51.2639
-margin_right = -122.777
-margin_bottom = -11.2639
-rect_scale = Vector2( 5, 5 )
+margin_right = 380.223
+margin_bottom = 348.736
 size_flags_horizontal = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.21
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 tab_size = 2
 text = "Game Over"
 __meta__ = {
@@ -203,3 +208,4 @@ volume_db = -0.01
 
 [connection signal="timeout" from="Camera2D/Frequency" to="Camera2D" method="_on_Frequency_timeout"]
 [connection signal="timeout" from="Camera2D/Duration" to="Camera2D" method="_on_Duration_timeout"]
+[connection signal="pressed" from="Panel/BackToMenuBtn" to="." method="_on_BackToMenuBtn_pressed"]
